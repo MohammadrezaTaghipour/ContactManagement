@@ -7,14 +7,11 @@ namespace Peekage.ContactManagement.Service.Infrastructure.MongoPersistence
     {
         public void Register()
         {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(Contact)))
+            BsonClassMap.RegisterClassMap<Contact>(cm =>
             {
-                BsonClassMap.RegisterClassMap<Contact>(cm =>
-                {
-                    cm.AutoMap();
-                    cm.MapIdMember(c => c.Id);
-                });
-            }
+                cm.AutoMap();
+                cm.MapIdMember(c => c.Id);
+            });
         }
     }
 }

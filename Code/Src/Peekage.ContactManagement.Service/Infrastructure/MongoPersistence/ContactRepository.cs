@@ -16,7 +16,16 @@ namespace Peekage.ContactManagement.Service.Infrastructure.MongoPersistence
 
         public async Task Add(Contact contact)
         {
-            await GetCollection().InsertOneAsync(contact);
+            try
+            {
+                var option = new InsertOneOptions { BypassDocumentValidation = true };
+                await GetCollection().InsertOneAsync(contact, option);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
         }
 
         public async Task<Contact> GetById(Guid id)

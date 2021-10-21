@@ -6,7 +6,8 @@ namespace Peekage.ContactManagement.Service.Domain.Models
     {
         protected Contact() { }
         protected Contact(Guid id, string name, string phoneNumber,
-            string email, string organization, string githubAccountName)
+            string email, string organization, string githubAccountName,
+            bool deleted)
         {
             Id = id;
             Name = name;
@@ -14,7 +15,7 @@ namespace Peekage.ContactManagement.Service.Domain.Models
             Email = email;
             Organization = organization;
             GithubAccountName = githubAccountName;
-            //Deleted = false;
+            Deleted = deleted;
         }
 
         public static Contact Create(ContactArg arg)
@@ -23,7 +24,7 @@ namespace Peekage.ContactManagement.Service.Domain.Models
 
             var contact = new Contact(arg.Id, arg.Name,
                 arg.PhoneNumber, arg.Email, arg.Organization,
-                arg.GithubAccountName);
+                arg.GithubAccountName, false);
             return contact;
         }
 

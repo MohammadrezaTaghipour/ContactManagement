@@ -38,18 +38,24 @@ namespace Peekage.ContactManagement.Service.Infrastructure.Query
             }
 
             var bsonDocs = await GetCollection().Find(filter).ToListAsync();
-            var contacts = new List<SearchContactQueryResponse>();
-            bsonDocs.ForEach(a =>
-            {
-                var contact = BsonSerializer.Deserialize<SearchContactQueryResponse>(a);
-                contacts.Add(contact);
-            });
+            var contacts = MapToResponse<SearchContactQueryResponse>(bsonDocs);
             return contacts;
         }
 
         IMongoCollection<BsonDocument> GetCollection()
         {
             return _mongodb.GetCollection<BsonDocument>(typeof(Contact).Name);
+        }
+
+        List<T> MapToResponse<T>(List<BsonDocument> docs)
+        {
+            var Items = new List<T>();
+            docs.ForEach(a =>
+            {
+                var item = BsonSerializer.Deserialize<T>(a);
+                Items.Add(item);
+            });
+            return Items;
         }
     }
 }

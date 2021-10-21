@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using Peekage.ContactManagement.Service.Domain.Models.Contacts;
 using Peekage.ContactManagement.Service.Infrastructure.MongoPersistence;
 using Peekage.ContactManagement.Service.Infrastructure.Query;
+using Peekage.ContactManagement.Service.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,9 @@ namespace Peekage.ContactManagement.Service.Framework
 
         public static IServiceCollection AddQueryServices(this IServiceCollection services)
         {
-            return services.AddScoped<IContactsQueryService, ContactsMongoQueryService>();
+            return services
+                .AddScoped<IContactsQueryService, ContactsMongoQueryService>()
+                .AddScoped<IGithubService, GithubService>();
         }
 
         public static IServiceCollection AddMongoDB(this IServiceCollection services,

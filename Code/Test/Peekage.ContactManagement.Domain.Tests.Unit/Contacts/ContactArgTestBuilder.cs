@@ -43,6 +43,12 @@ namespace Peekage.ContactManagement.Domain.Tests.Unit.Contacts
             return this;
         }
 
+        public ContactArgTestBuilder WithGithubRepository(string value)
+        {
+            GithubRepositories.Add(new GithubRepository(value));
+            return this;
+        }
+
         public ContactArg Build()
         {
             return this;

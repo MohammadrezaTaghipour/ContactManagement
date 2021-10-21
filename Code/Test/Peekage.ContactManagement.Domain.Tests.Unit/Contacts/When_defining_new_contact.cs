@@ -17,7 +17,10 @@ namespace Peekage.ContactManagement.Domain.Tests.Unit.Contacts
                 .WithPhoneNumber("+1 (321)3666556")
                 .WithEmail("daveferry@info.com")
                 .WithOrganization("Continuous Delivery")
-                .WithGithubAccountName("DaveFerry")))
+                .WithGithubAccountName("DaveFerry")
+                .WithGithubRepository("Continuous Delivery Pipline Samples")
+                .WithGithubRepository("Continuous Delivery Bakup Samples")
+                ))
             .Then(s => _.ItGetsDefinedProperly())
             .BDDfy();
         }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peekage.ContactManagement.Service.Domain.Models
 {
@@ -7,7 +9,7 @@ namespace Peekage.ContactManagement.Service.Domain.Models
         protected Contact() { }
         protected Contact(Guid id, string name, string phoneNumber,
             string email, string organization, string githubAccountName,
-            bool deleted)
+            bool deleted, List<GithubRepository> githubRepositories)
         {
             Id = id;
             Name = name;
@@ -16,15 +18,16 @@ namespace Peekage.ContactManagement.Service.Domain.Models
             Organization = organization;
             GithubAccountName = githubAccountName;
             Deleted = deleted;
+            _githubRepositories = githubRepositories;
         }
 
         public static Contact Create(ContactArg arg)
         {
-            //TODO: check invarinats here...
+            //TODO: check invariants here...
 
             var contact = new Contact(arg.Id, arg.Name,
                 arg.PhoneNumber, arg.Email, arg.Organization,
-                arg.GithubAccountName, false);
+                arg.GithubAccountName, false, arg.GithubRepositories);
             return contact;
         }
 
@@ -36,6 +39,8 @@ namespace Peekage.ContactManagement.Service.Domain.Models
         public string Organization { get; }
         public string GithubAccountName { get; }
         public bool Deleted { get; }
+        private List<GithubRepository> _githubRepositories = new List<GithubRepository>();
+        public IReadOnlyList<GithubRepository> GithubRepositories => _githubRepositories;
         #endregion
     }
 }

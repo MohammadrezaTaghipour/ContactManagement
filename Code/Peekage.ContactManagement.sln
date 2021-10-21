@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peekage.ContactManagement.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peekage.ContactManagement.Service", "Src\Peekage.ContactManagement.Service\Peekage.ContactManagement.Service.csproj", "{3511B122-ADAA-42F5-8D27-97391F82C487}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peekage.ContactManagement.Specs", "Test\Peekage.ContactManagement.Specs\Peekage.ContactManagement.Specs.csproj", "{4DC7A906-09E7-4946-B77D-6B4C114600D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{3511B122-ADAA-42F5-8D27-97391F82C487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3511B122-ADAA-42F5-8D27-97391F82C487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3511B122-ADAA-42F5-8D27-97391F82C487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC7A906-09E7-4946-B77D-6B4C114600D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC7A906-09E7-4946-B77D-6B4C114600D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC7A906-09E7-4946-B77D-6B4C114600D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC7A906-09E7-4946-B77D-6B4C114600D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FE1CC019-002E-407A-AE34-3E68FD7BA574} = {83B0A951-BFFB-4D94-81FA-CB1E707D1AA9}
 		{3511B122-ADAA-42F5-8D27-97391F82C487} = {30031D36-A005-4AB7-B250-761DCEF92C7B}
+		{4DC7A906-09E7-4946-B77D-6B4C114600D2} = {83B0A951-BFFB-4D94-81FA-CB1E707D1AA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EC4CDF0-27A1-4088-B77A-FB07B72D3A40}

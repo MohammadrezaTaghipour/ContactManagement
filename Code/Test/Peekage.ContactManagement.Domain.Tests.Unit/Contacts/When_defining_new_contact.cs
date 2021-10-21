@@ -19,7 +19,7 @@ namespace Peekage.ContactManagement.Domain.Tests.Unit.Contacts
                 .WithOrganization("Continuous Delivery")
                 .WithGithubAccountName("DaveFerry")
                 .WithGithubRepository("Continuous Delivery Pipline Samples")
-                .WithGithubRepository("Continuous Delivery Bakup Samples")
+                .WithGithubRepository("Continuous Delivery Backup Samples")
                 ))
             .Then(s => _.ItGetsDefinedProperly())
             .BDDfy();

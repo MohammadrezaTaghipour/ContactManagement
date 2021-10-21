@@ -11,8 +11,8 @@ namespace Peekage.ContactManagement.Service.Framework
 
     public class CommandBus : ICommandBus
     {
-        IServiceProvider _serviceProvider;
-        ILogger<CommandBus> _logger;
+        readonly IServiceProvider _serviceProvider;
+        readonly ILogger<CommandBus> _logger;
 
         public CommandBus(IServiceProvider serviceProvider,
             ILogger<CommandBus> logger)
@@ -24,8 +24,11 @@ namespace Peekage.ContactManagement.Service.Framework
         public async Task Dispatch<T>(T command)
         {
             _logger.LogInformation($"Starting handling command of type: {command.GetType().Name}.");
-            var handler = (ICommandHandler<T>)_serviceProvider.GetService(typeof(ICommandHandler<T>));
+            
+            var handler = (ICommandHandler<T>)_serviceProvider
+                .GetService(typeof(ICommandHandler<T>));
             await handler.Handle(command);
+            
             _logger.LogInformation($"Handling command of type: {command.GetType().Name} finished successfully");
         }
     }

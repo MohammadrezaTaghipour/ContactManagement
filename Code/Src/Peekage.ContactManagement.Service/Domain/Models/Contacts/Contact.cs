@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Peekage.ContactManagement.Service.Domain.Models
 {
@@ -31,7 +30,6 @@ namespace Peekage.ContactManagement.Service.Domain.Models
             return contact;
         }
 
-        #region Props
         public Guid Id { get; }
         public string Name { get; }
         public string PhoneNumber { get; }
@@ -41,6 +39,5 @@ namespace Peekage.ContactManagement.Service.Domain.Models
         public bool Deleted { get; }
         private List<GithubRepository> _githubRepositories = new List<GithubRepository>();
         public IReadOnlyList<GithubRepository> GithubRepositories => _githubRepositories;
-        #endregion
     }
 }

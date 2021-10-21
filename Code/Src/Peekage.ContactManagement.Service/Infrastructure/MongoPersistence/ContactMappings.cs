@@ -11,8 +11,17 @@ namespace Peekage.ContactManagement.Service.Infrastructure.MongoPersistence
             {
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id);
-                cm.MapField("_githubRepositories").SetElementName(nameof(Contact.GithubRepositories));
+                //cm.MapField("_githubRepositories")
+                //.SetElementName("GithubRepositories");
             });
+
+            if (!BsonClassMap.IsClassMapRegistered(typeof(GithubRepository)))
+            {
+                BsonClassMap.RegisterClassMap<GithubRepository>(cm =>
+                {
+                    cm.AutoMap();
+                });
+            }
         }
     }
 }

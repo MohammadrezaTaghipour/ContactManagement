@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Peekage.ContactManagement.Service.Application.Contacts
 {
-    public class ContactCommandHandler : ICommandHandler<DefineContactCommand>
+    public class ContactCommandHandler :
+        ICommandHandler<DefineContactCommand>
     {
-        IContactRepository _repository;
-        IGithubService _githubService;
+        readonly IContactRepository _repository;
+        readonly IGithubService _githubService;
 
         public ContactCommandHandler(IContactRepository repository,
             IGithubService githubService)
@@ -43,7 +44,7 @@ namespace Peekage.ContactManagement.Service.Application.Contacts
                 Organization = command.Organization,
                 GithubAccountName = command.GithubAccountName,
                 GithubRepositories = githubRepoes
-                .Select(a => new GithubRepository(a)).ToList()
+                ?.Select(a => new GithubRepository(a)).ToList()
             };
         }
     }

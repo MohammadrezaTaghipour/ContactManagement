@@ -15,7 +15,7 @@ namespace Peekage.ContactManagement.Service.Infrastructure.Services
     {
         static readonly HttpClient _client = new HttpClient();
         static readonly string _baseUrl = "https://api.github.com";
-        ILogger<GithubService> _logger;
+        readonly ILogger<GithubService> _logger;
 
         public GithubService(ILogger<GithubService> logger)
         {
@@ -26,13 +26,17 @@ namespace Peekage.ContactManagement.Service.Infrastructure.Services
         {
             try
             {
-                //TODO: check if account does not exist!
+                using (var requestMessage = new HttpRequestMessage(HttpMethod.Get,
+                $"{_baseUrl}/users/{account}/repos"))
+                {
+                    requestMessage.Headers.Add("user-agent", "peekage");
 
-                var response = await _client.GetAsync($"{_baseUrl}/users/{account}/repos");
-                response.EnsureSuccessStatusCode();
-                var responseBody = await response.Content.ReadAsStringAsync();
-                var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GithubResponse>>(responseBody);
-                return items.Select(a => a.Name).ToList();
+                    var response = await _client.SendAsync(requestMessage);
+                    response.EnsureSuccessStatusCode();
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GithubResponse>>(responseBody);
+                    return items.Select(a => a.Name).ToList();
+                }
             }
             catch (HttpRequestException e)
             {

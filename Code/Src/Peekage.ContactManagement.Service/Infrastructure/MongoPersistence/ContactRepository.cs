@@ -8,7 +8,7 @@ namespace Peekage.ContactManagement.Service.Infrastructure.MongoPersistence
 {
     public class ContactRepository : IContactRepository
     {
-        IMongoDatabase _mongodb;
+        readonly IMongoDatabase _mongodb;
         public ContactRepository(IMongoDatabase mongodb)
         {
             _mongodb = mongodb;
@@ -16,16 +16,8 @@ namespace Peekage.ContactManagement.Service.Infrastructure.MongoPersistence
 
         public async Task Add(Contact contact)
         {
-            try
-            {
-                var option = new InsertOneOptions { BypassDocumentValidation = true };
-                await GetCollection().InsertOneAsync(contact, option);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw ex;
-            }
+            var option = new InsertOneOptions { BypassDocumentValidation = true };
+            await GetCollection().InsertOneAsync(contact, option);
         }
 
         public async Task<Contact> GetById(Guid id)

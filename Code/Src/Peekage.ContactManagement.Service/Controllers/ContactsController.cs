@@ -10,8 +10,8 @@ namespace Peekage.ContactManagement.Service.Controllers
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        ICommandBus _bus;
-        IContactsQueryService _queryService;
+        readonly ICommandBus _bus;
+        readonly IContactsQueryService _queryService;
 
         public ContactsController(ICommandBus bus,
             IContactsQueryService queryService)

@@ -5,11 +5,8 @@ using Peekage.ContactManagement.Service.Domain.Models.Contacts;
 using Peekage.ContactManagement.Service.Infrastructure.MongoPersistence;
 using Peekage.ContactManagement.Service.Infrastructure.Query;
 using Peekage.ContactManagement.Service.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Peekage.ContactManagement.Service.Framework
 {
@@ -31,7 +28,8 @@ namespace Peekage.ContactManagement.Service.Framework
             assembly
             .GetTypes()
             .Where(item => item.GetInterfaces()
-            .Where(i => i.IsGenericType).Any(i => i.GetGenericTypeDefinition() == typeof(ICommandHandler<>))
+            .Where(i => i.IsGenericType)
+            .Any(i => i.GetGenericTypeDefinition() == typeof(ICommandHandler<>))
             && !item.IsAbstract && !item.IsInterface)
             .ToList()
             .ForEach(assignedTypes =>

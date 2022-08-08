@@ -2,11 +2,11 @@
 
 ## Getting Started
 
-You need to have installed following requirements: <br/>
+You need to have installed following requirements: 
 ```
- . Visual Studio 2019 or Visual Studio Code <br/>
- . Net Core 3.1 skd </br>
- . MongoDB  <br/> <br/>
+ . Visual Studio 2019 or Visual Studio Code 
+ . Net Core 3.1 skd 
+ . MongoDB  
 ```
 
 ## Build and Run
